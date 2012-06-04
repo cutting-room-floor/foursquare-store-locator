@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Foursquare Store Locator</title>
+    <link rel="stylesheet" href="map.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="shortcut icon" href="http://mapbox.com/images/favicon.ico" type="image/x-icon" />
+</head>
+<body class="left">
+    <div id="content"><div class="limiter">
+        <h2><img src="http://www.sweetgreen.com/images/head_locations.png" alt="where we be"></h2>
+        <a id="showall" class="hidden" href="#">Address filter</a>
+        <div id="no-venues" class="hidden">Oops! Looks like there are no <strong>sweetgreen</strong> locations within five miles of this address. Try another search.</div>
+    </div></div>
+    <div id="map" class="map"></div>
+    <a href="https://foursquare.com/" target="_blank">
+        <img id="fsq-attribution" src="img/powered-by.png">
+    </a>
+    <div id="search">
+       <form class="geocode">
+         <input placeholder='Enter city, state, or ZIP' type="text">
+         <input type='submit' />
+         <div id='geocode-error'></div>
+       </form>
+    </div>
+
+    <!-- External libraries and site script -->
+    <script src="ext/jquery.min.js"></script>
+    <script src="ext/underscore.min.js"></script>
+    <script src="ext/modestmaps.min.js"></script>
+    <script src="ext/wax/wax.mm.js"></script>
+    <script src="ext/wax/wax.ext.js"></script>
+    <script src="ext/easey.js"></script>
+    <script src="ext/easey.handlers.js"></script>
+    <script src="ext/mmg.js"></script>
+    <script src="script.js"></script>
+    <script src="foursquare.js"></script>
+    
+    <!-- Site configuration -->
+    <script type="text/javascript">
+        
+        // Set up the foursquare API
+        foursquare.settings = {
+            /* foursquare API keys. See: https://foursquare.com/oauth/register */
+            client_id: '1SHOHFLYHC3KIQKMBMKRWHASORK0TPCNPPH04OQCT1Y5ZRGW',
+            client_secret: '2DMK0XSZL3ZMZDNR0G0UQ4ARJYN2HIJXL4FKXZ1WUALXZYZV',
+            /* List ID. See: https://developer.foursquare.com/docs/explore#req=users/self/lists */
+            list: '4fc674d7e4b07a1f71542757',
+            /* Search radius for nearby address matches */
+            radius: 8046.72 // 5 miles in meters
+        };
+
+        // Make a new map in #map
+        var main = Map('map', {
+            api: 'http://a.tiles.mapbox.com/v3/dhcole.map-qkbbib4q.jsonp',
+            center: {
+                lat: 38.897562770340755,
+                lon: -77.06610914869823,
+                zoom: 13
+            },
+            zoomRange: [1, 17],
+            features: [
+                'zoomwheel',
+                'zoombox',
+                'zoompan',
+            ]
+        }, foursquare.start);
+
+    </script>
+</body>
+</html>
