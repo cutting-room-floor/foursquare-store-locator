@@ -51,7 +51,7 @@ table {
 body,
 input,
 textarea {
-  font:13px/16px helvetica, arial, clean, sans-serif;
+  font:13px/16px helvetica, sans-serif;
   -webkit-font-smoothing:antialiased;
   color: white;
   outline-color: #41a900;
@@ -59,11 +59,11 @@ textarea {
 pre,
 code { font:normal 12px/20px monospace; }
 h1, h2, h3, h4, h5, h6 {
-  font-weight:700;
+  font-weight:normal;
   }
 h1 {
   line-height:1.75em;
-  font-size:1.5em;
+  font-size:1.75em;
   }
 h2 {
   line-height:1.5em;
@@ -88,38 +88,11 @@ body > div {
   z-index:0;
   background: #e8fdda;
   }
-#header {
-  position:absolute;
-  top:0;
-  right:0;
-  left:0;
-  height:29px;
-  background:rgb(0,0,0);
-  background:rgba(0,0,0, 0.9);
-  border-bottom:1px solid #ccc;
-  overflow:hidden;
-  padding:10px 0;
-  z-index:2;
+
+h1 {
+  margin-bottom:10px;
   }
-#header img {
-  display:block;
-  float:left;
-  margin:-13px 20px 0 0;
-  top:50%;
-  position:relative;
-  }
-#header h1 {
-  display:block;
-  float:left;
-  line-height:30px;
-  margin:0;
-  }
-#header .limiter {
-  width:920px;
-  margin:0px auto;
-  position:relative;
-  height:100%;
-  }
+
 #content {
   position:absolute;
   top:0;
