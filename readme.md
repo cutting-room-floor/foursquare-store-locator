@@ -4,7 +4,7 @@ This template uses the foursquare API to build a store locator feature that maps
 
 This whole template can be emedded as an iframe or integrated into your existing website template.
 
-![](http://farm8.staticflickr.com/7098/7336417746_9fd292d2e8_c.jpg)
+![](http://farm8.staticflickr.com/7098/7336417746_8d5f0ac214_o.png)
 
 By adding your store location data to foursquare, you have a simple interface to manage your locations and allow customers interact with them both on-line and off. While browsing the map for nearby locations, users will see the total checkins and foursquare users who have visited your location, and they will have the option to add your location to their foursquare todo list. When users with the foursquare mobile app walk by venues on their todo list, they'll get reminded to check out your store. 
 
