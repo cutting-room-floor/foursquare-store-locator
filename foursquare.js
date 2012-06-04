@@ -65,13 +65,13 @@ foursquare.table = function() {
     );
 
     var groups = _.groupBy(foursquare.venues, function(item) {
-        return item.location.state;
+        return item.location.state.replace(/\./g,'');
     });
 
     var output = [];
     _.each(groups, function(items, state) {
-        output.push('<div class="state-group '+ state.toLowerCase() + '">' +
-            '<h3 class="state-label">'+ state + '</h3>');
+        output.push('<div class="state-group '+ state.toLowerCase().replace(/\./g,'') + '">' +
+            '<h3 class="state-label">'+ state.replace(/\./g, '') + '</h3>');
         _.each(items, function(item) {
             output.push(template(item));
         });
