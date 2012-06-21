@@ -144,4 +144,3 @@ The work of fetching, parsing, mapping, and filtering the venues (store location
 * [jQuery](http://jquery.com/)
 * [Underscore.js](http://documentcloud.github.com/underscore/)
 * [foursquare API](https://developer.foursquare.com/)
-* 
