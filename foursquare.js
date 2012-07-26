@@ -7,7 +7,8 @@ foursquare.venues = [];
 
 
 // Get venues
-foursquare.start = function() {    
+foursquare.start = function(map) {    
+    foursquare._map = map;
     // Default ajax params
     foursquare.params = {
         client_id: foursquare.settings.client_id,
@@ -120,12 +121,10 @@ foursquare.table = function() {
 
 // Map the venues
 foursquare.map = function() {
-    var points = { 'type': 'FeatureCollection',
-        'features': []
-    };
+    var features = [];
 
     _.each(_.rest(foursquare.venues, foursquare.last || 0), function(venue) {
-        points.features.push({
+        features.push({
             type: 'Feature',
             id: venue.id,
             geometry: {
@@ -142,9 +141,9 @@ foursquare.map = function() {
 
     foursquare.last = foursquare.venues.length;
     if (MM_map.venueLayer) {
-        MM_map.venueLayer.geojson(points);
+        MM_map.venueLayer.features(features);
     } else {
-        MM_map.venueLayer = mmg().factory(function(x) {
+        MM_map.venueLayer = mapbox.markers.layer().factory(function(x) {
             var d = document.createElement('div'),
                 overlay = document.createElement('div'),
                 anchor = document.createElement('div');
@@ -186,7 +185,7 @@ foursquare.map = function() {
             d.appendChild(anchor);
 
             return d;
-        }).geojson(points);
+        }).features(features);
         MM_map.addLayer(MM_map.venueLayer);
     }
     MM_map.setCenter({
