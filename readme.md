@@ -16,131 +16,98 @@ To build a project based on this template, fork this repository, edit the html c
 
 To make your custom base map, [sign up for MapBox](http://mapbox.com/plans/) and [create a map](http://mapbox.com/hosting/creating/).
 
-
 ## Using this template
 
-Edit the content by adjusting, removing, or adding to `index.html`. This is the main markup document with the content and layout for the map-site.
+Edit the content by adjusting, removing, or adding to `index.html`. This is
+the main markup document with the content and layout for the map-site.
 
-Adjust the design by editing the `style.css` file and adding any additional supporting structure to `index.html`.
+Adjust the design by editing the `style.css` file and adding any additional
+supporting structure to `index.html`.
 
-Set the map features by writing a configuration script at the bottom of `index.html`. 
-
+Set the map features by writing a configuration script at the bottom of `index.html`.
 
 ## HTML layout
 
-The html markup for the template is in `index.html`. It's a simple html page layout. Generally, you'll want to change the content elements like `title`, `h1`, `img#logo` and `div#about`.
+The html markup for the template is in `index.html`. It's a simple HTML5 page layout. Generally, there are three things to change in this document:
 
+1. Content elements like the `title`, `h1`, and `div#about` elements
+2. Add new container elements for features like maps, layer switchers, and geocoders
+3. Layout structure, as controlled by the `class` attribute on the `body` element
+
+There are three layout classes that can be applied to the `body` element:
+
+- `right` A full screen map with a header and right content sidebar (default)
+- `left` A similar full screen map with a centered header and left content sidebar
+- `hero` An inline map hero with a header and full-width, scrollable content section
 
 ## CSS styles
 
-Most of the hard work on a map site build is template design implemented through CSS. This template by default is simple and clean so you can modify or replace it. This design and be completely overridden by applying new CSS styles or changing the exisiting rules in `style.css`.
-
-CSS rules are set in two files:
-
-- `style.css` contains all the layout and typographic styles as well as some overridden styles for map controls, and a [reset stylesheet](http://meyerweb.com/eric/tools/css/reset/). Implement your design by editing this file.
-- `map.css` holds the default map styles from tiles.mapbox.com embeds.
-
+Most of the hard work on a microsite build is template design implemented through CSS. This template by default is simple and clean, and it's based on the tiles.mapbox.com full map view. This design and be completely overridden by applying new CSS styles. `style.css` contains all the layout and typographic styles as well as some overridden styles for map controls, as well as a [reset stylesheet](http://meyerweb.com/eric/tools/css/reset/). Implement your design by editing this file.
 
 ## Javascript interaction
 
-All of the external javascript libraries to make the map interactive and connect it to MapBox are stored in the `ext` directory. For this template, we're using [Modest Maps](http://modestmaps.com/) and [Wax](http://mapbox.com/wax) to make the map interactive, [Easey](https://github.com/mapbox/easey) for smooth aninmated panning and zooming, and [MMG](http://mapbox.com/mmg/) for adding markers to the map based on [geojson](http://www.geojson.org/)-formatted data.
+The map is configured in `script.js` and takes advantage of many [MapBox Javascript API](http://mapbox.com/developers/mapbox.js/)
+features - so the documentation for the MapBox Javascript API applies to every part
+of this site.
 
-An internal javascript library, `script.js`, abstracts common map settings, and `foursquare.js` is the library we put together map the foursquare API.
+Additional integration is added with `mapbox.jquery.js`, which automatically binds
+links that control the map - see the navigation links for examples.
 
-We're also using [jQuery](http://jquery.com/) for DOM manipulation and handling events, and [Underscore.js](http://documentcloud.github.com/underscore/) for data processing.
+All the following controls require that the id of the element containing the map be specified using the `data-control` attribute. In this case it is `data-control="map"`. This attribute may be placed in any of the controls' parent elements.
 
-### Map configuration
+### Address search
 
-The map is added to the `<div>` container in `index.html` with `id="map"`. Styles to lay out the map container come from `class="map"`.
+To search for an address, we need a geocoding service that converts a plain-text
+address query into a geographic location. This template uses [MapQuest Open](http://open.mapquest.com/)
+search, which is free to use for noncommercial and commercial applications alike. If you'd
+like to use another service, edit the `geocode` function in `script.js`.
+
+To add an address search to your page, build a simple html form to gather user input:
 
 ```html
-<div id="map" class="map"></div>
+<div data-control="geocode" id="search">
+    <form class="geocode">
+        <input placeholder="Search for an address" type="text">
+        <input type="submit" />
+        <div id="geocode-error"></div>
+    </form>
+</div>
 ```
 
-At the bottom of the `index.html` document, we set up the map. The `id` of the container is the first argument (`'map'`), and an object of options is the second argument. The third arugement is the name of an optional callback function, which we use to start the `foursquare.js` main function, once the map is loaded. 
+By specifying `data-control="gecode"` on the `div` containing your `form`,
+`mapbox.jquery.geocoder.js` will bind a function that handles address searches and repositions
+the map accordingly. If the geocoder has a successful response to a search, it
+will center the map and zoom it to show the bounding box extent of that response. If
+the bounding box is small enough to zoom the map to its maximum zoom, the geocoder
+will also place a pin with a star over the response's exact location.
 
-The only required option is `api`, and it should contain the API URL from MapBox. After you create a new map through your MapBox account, click `embed` on the `info` tab and copy the API URL.
 
-```js
-var main = Map('map', { 
-    api: 'http://a.tiles.mapbox.com/v3/mapbox.map-hv50mbs9.jsonp' 
-});
+### Easing links
+To link to a geographic location add at least one of the following data attributes:
+
+- `data-lat`: The latitude of the location.
+- `data-lon`: The longitude of the location.
+- `data-zoom`: The zoom level.
+
+```html
+<a data-lat="39" data-lon"77" data-zoom="10" href="#">
 ```
 
-The map options object can take several options:
+If you specify any of these, the link will be automatically bound to the map.
 
-- `api` The MapBox API URL from the `embed` button on your map:
-  ![](http://mapbox.com/images/hosting/embedding-4.png)
-- `center` An object of `{ lat: ##, lon: ##, zoom: ## }` that defines the map's initial view. If not is provided, the default center set from MapBox will be used
-- `zoomRange` An array of `[##, ##]` where the first element is the minimum zoom level and the second is the max
-- `features` An array of additional features for the map
 
-The features object may contain any of the following:
+### Layer Switcher
+Use `data-control="switcher"` to bind all links in child elements to the layer switcher function. Specify the layer by setting the `href` attribute of anchors to the layer's name. There are two optional layer attributes:
 
-- `zoomwheel` Use the scroll wheel on the mouse to zoom the map
-- `tooltips` or `movetips` For layers with interactive overlays, display fixed `tooltips` or `movetips`, which are overlays the follow the cursor
-- `zoombox` Allow uses to zoom to a bounding box by holding the shift key and dragging over the map
-- `zoompan` Show zoom controls on the map
-- `legend` Show a legend on the map. Legends from multiple layers will stack on top of each other
-- `share` Show a share button on the map with Twitter, Facebook links and an embed code for the map. The embedded view of the map will add a `class="embed"` to the `<body>` element of the page for easy theming. For instance, by default the embed layout is a full screen map with the layer switcher over it on the left. The header and content are hidden.
-- `bwdetect` Automatically detect low bandwidth contections and decrease the quality of the map images to accomodate
+- `data-group`: Specifies the group, defaulting to 0. Only one layer per group can be enabled at any time.
+- `data-toggle="true"`: Allow a layer to be toggled off.
 
-A map with all the options and a callback function would look like this:
-
-```js
-var main =  Map('map', {
-    api: 'http://a.tiles.mapbox.com/v3/mapbox.map-hv50mbs9.jsonp',
-    center: {
-        lat: 38.8850033656251,
-        lon: -77.01439615889109,
-        zoom: 14
-    },
-    zoomRange: [0, 15],
-    features: [
-        'zoomwheel',
-        'tooltips', // or 'movetips'
-        'zoombox',
-        'zoompan',
-        'legend',
-        'share',
-        'bwdetect'
-    ]
-}, foursquare.start);
+```html
+<div data-control="switcher">
+    <a data-group="0" href="#streets">Streets</a>
+    <a data-group="1" href="#construction">Construction projects</a>
+    <a data-group="1" href="#building">Building permits</a>
+</div>
 ```
 
-### foursquare.js
-
-All data about store locations for this template comes from the foursquare API. Begin by logging into foursquare and [creating a list of all of your venues](http://support.foursquare.com/entries/20386796-how-do-i-add-or-create-a-list). This example pulls addresses and phone numbers from the API, but you could extend it to include business hours, menues, photos and more by entering more information about your stores in their foursquare venue profiles. [See here](http://support.foursquare.com/entries/188296-how-do-i-add-my-business-to-foursquare) more about entering your store locations as foursquare venues.
-
-To connect this template with your foursquare list, add the following to the top of your `index.html` configuration:
-
-```js
-// Set up the foursquare API
-foursquare.settings = {
-    /* foursquare API keys. See: https://foursquare.com/oauth/register */
-    client_id: '1SHOHFLYHC3KIQKMBMKRWHASORK0TPCNPPH04OQCT1Y5ZRGW',
-    client_secret: '2DMK0XSZL3ZMZDNR0G0UQ4ARJYN2HIJXL4FKXZ1WUALXZYZV',
-    /* List ID. See: https://developer.foursquare.com/docs/explore#req=users/self/lists */
-    list: '4fc674d7e4b07a1f71542757',
-    /* Search radius for nearby address matches */
-    radius: 8046.72 // 5 miles in meters
-};
-```
-
-- `client_id` and `client_secret` These are your foursquare API keys. To get them, register your site at https://foursquare.com/oauth/register and replace the ones we are using here.
-- `list` This is the foursquare list ID for the list you made with your locations. To find it, we need to browse the foursquare API. Visit [the foursquare API explorer](https://developer.foursquare.com/docs/explore#req=users/self/lists) and scan the json data until you find the ID for your list in the `items` array.
-  ![](https://img.skitch.com/20120604-geg541i387j3jw176181unef7w.jpg)
-- `radius` This is the radius in meters in which an location is considered a match for an address search. You could also allow the user to set this value by setting it with javascript.
-
-The work of fetching, parsing, mapping, and filtering the venues (store locations) in your foursquare list is all handled by `foursquare.js`. 
-
-## Further Reading
-
-* [MapBox API](http://mapbox.com/hosting/api/)
-* [MapBox Wax](http://mapbox.com/wax/)
-* [MapBox MMG](http://mapbox.com/mmg/)
-* [MapBox Easey](http://mapbox.com/easey/)
-* [Modest Maps](http://modestmaps.com/)
-* [jQuery](http://jquery.com/)
-* [Underscore.js](http://documentcloud.github.com/underscore/)
-* [foursquare API](https://developer.foursquare.com/)
+Easing links can be used together with the layer switcher.
