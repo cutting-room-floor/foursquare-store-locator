@@ -265,6 +265,7 @@ a.zoomer {
   position: absolute;
   cursor: pointer;
   overflow: hidden;
+  pointer-events: all;
   }
 .mmg:hover, .mmg.active {
   overflow: visible;

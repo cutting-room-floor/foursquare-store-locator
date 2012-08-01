@@ -7,7 +7,8 @@ foursquare.venues = [];
 
 
 // Get venues
-foursquare.start = function() {    
+foursquare.start = function(map) {    
+    foursquare._map = map;
     // Default ajax params
     foursquare.params = {
         client_id: foursquare.settings.client_id,
@@ -95,13 +96,13 @@ foursquare.table = function() {
             $(this).parent().parent().addClass('active');
 
             // Move map to adjusted center
-            MM_map.easey = easey().map(MM_map)
-                .to(MM_map.locationCoordinate(locationOffset({
-                    lat: point.location.lat,
-                    lon: point.location.lng
-                })).zoomTo(MM_map.getZoom())).run(500, function() {
-                    $('#' + id).addClass('active');
-                });
+            foursquare._map.ease.location(locationOffset({
+                lat: point.location.lat,
+                lon: point.location.lng
+            })).zoom(foursquare._map.zoom()).optimal(0.7, null, function() {
+                $('#' + id).addClass('active');
+            });
+
         }
     });
 
@@ -120,12 +121,10 @@ foursquare.table = function() {
 
 // Map the venues
 foursquare.map = function() {
-    var points = { 'type': 'FeatureCollection',
-        'features': []
-    };
+    var features = [];
 
     _.each(_.rest(foursquare.venues, foursquare.last || 0), function(venue) {
-        points.features.push({
+        features.push({
             type: 'Feature',
             id: venue.id,
             geometry: {
@@ -141,10 +140,10 @@ foursquare.map = function() {
     });
 
     foursquare.last = foursquare.venues.length;
-    if (MM_map.venueLayer) {
-        MM_map.venueLayer.geojson(points);
+    if (foursquare._map.venueLayer) {
+        foursquare._map.venueLayer.features(features);
     } else {
-        MM_map.venueLayer = mmg().factory(function(x) {
+        foursquare._map.venueLayer = mapbox.markers.layer().factory(function(x) {
             var d = document.createElement('div'),
                 overlay = document.createElement('div'),
                 anchor = document.createElement('div');
@@ -186,12 +185,12 @@ foursquare.map = function() {
             d.appendChild(anchor);
 
             return d;
-        }).geojson(points);
-        MM_map.addLayer(MM_map.venueLayer);
+        }).features(features);
+        foursquare._map.addLayer(foursquare._map.venueLayer);
     }
-    MM_map.setCenter({
-        lat: MM_map.getCenter().lat,
-        lon: MM_map.getCenter().lon
+    foursquare._map.setCenter({
+        lat: foursquare._map.getCenter().lat,
+        lon: foursquare._map.getCenter().lon
     });
 
     // Handlers
@@ -254,16 +253,16 @@ foursquare.refresh = function(coords) {
         $('#' + closest.id).addClass('active');
 
         // Center on point
-        MM_map.zoom(14).center(locationOffset(closest.loc));
+        foursquare._map.zoom(14).center(locationOffset(closest.loc));
     } else {
-        MM_map.zoom(8).center(locationOffset(coords));
+        foursquare._map.zoom(8).center(locationOffset(coords));
     }
 };
 
 foursquare.geocoder = function() {
     $('#search').submit(function(e) {
         e.preventDefault();
-        geocode($('input[type=text]', this).val(), MM_map);
+        geocode($('input[type=text]', this).val(), foursquare._map);
     });
     var geocode = function(query, m) {
         params = '?' + _.map(foursquare.params, function(num, key) {
@@ -305,11 +304,11 @@ foursquare.geocoder = function() {
 
 // Calculate offset given #content
 function locationOffset(location) {
-    var offset = MM_map.locationPoint({
+    var offset = foursquare._map.locationPoint({
             lat: location.lat,
             lon: location.lon
         });
-    offset = MM_map.pointLocation({
+    offset = foursquare._map.pointLocation({
         x: offset.x - $('#content').width() / 2,
         y: offset.y
     });

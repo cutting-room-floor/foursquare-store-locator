@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <title>Foursquare Store Locator</title>
-    <link rel="stylesheet" href="map.css" type="text/css" />
+    <link rel="stylesheet" href="http://api.tiles.mapbox.com/mapbox.js/v0.6.3/mapbox.css" type="text/css" />
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link rel="shortcut icon" href="http://mapbox.com/images/favicon.ico" type="image/x-icon" />
+
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.3/mapbox.js'></script>
+    <script src="ext/jquery.min.js"></script>
+    <script src="ext/underscore.min.js"></script>
+    <script src='foursquare.js'></script>
 </head>
 <body class="left">
     <div id="content"><div class="limiter">
@@ -25,19 +30,6 @@
        </form>
     </div>
 
-    <!-- External libraries and site script -->
-    <script src="ext/jquery.min.js"></script>
-    <script src="ext/underscore.min.js"></script>
-    <script src="ext/modestmaps.min.js"></script>
-    <script src="ext/wax/wax.mm.js"></script>
-    <script src="ext/wax/wax.ext.js"></script>
-    <script src="ext/easey.js"></script>
-    <script src="ext/easey.handlers.js"></script>
-    <script src="ext/mmg.js"></script>
-    <script src="script.js"></script>
-    <script src="foursquare.js"></script>
-    
-    <!-- Site configuration -->
     <script type="text/javascript">
         
         // Set up the foursquare API
@@ -52,20 +44,16 @@
         };
 
         // Make a new map in #map
-        var main = Map('map', {
-            api: 'http://a.tiles.mapbox.com/v3/dhcole.map-qkbbib4q.jsonp',
-            center: {
+        mapbox.auto('map', 'dhcole.map-qkbbib4q', function (map, tilejson) {
+            MM_map = map;
+            map.setCenterZoom({
                 lat: 38.897562770340755,
-                lon: -77.06610914869823,
-                zoom: 13
-            },
-            zoomRange: [1, 17],
-            features: [
-                'zoomwheel',
-                'zoombox',
-                'zoompan',
-            ]
-        }, foursquare.start);
+                lon: -77.06610914869823
+            }, 13);
+
+            map.setZoomRange(1, 17);
+            foursquare.start(map);
+        });
 
     </script>
 </body>
