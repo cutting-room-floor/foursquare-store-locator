@@ -65,7 +65,7 @@ foursquare.table = function() {
     );
 
     var groups = _.groupBy(foursquare.venues, function(item) {
-        return item.location.state.replace(/\./g,'');
+        return (item.location.state||'').replace(/\./g,'');
     });
 
     var output = [];
