@@ -21,7 +21,7 @@ time, mark, audio, video {
   font-size:100%;
   font:inherit;
   vertical-align:baseline;
-  outline-color: #80ba8c;
+  outline-color: #AED574;
   }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -54,7 +54,7 @@ textarea {
   font: 400 13px/16px 'open sans', helvetica, sans-serif;
   -webkit-font-smoothing:antialiased;
   color: white;
-  outline-color: #80ba8c;
+  outline-color: #AED574;
   }
 pre,
 code { font:normal 12px/20px monospace; }
@@ -254,20 +254,20 @@ form.geocode.loading input[type=submit] {
   top: -30px;
   }
 .mmg {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   top: -35px;
-  left: -15px;
+  left: -10px;
   z-index: 3;
   cursor: pointer;
   overflow: hidden;
-  background: #76bb8b;
+  background: #AED574;
   border-radius: 50%;
-  box-shadow: 0 0 0 10px rgba(0,0,0,.10);
+  box-shadow: 0 0 0 5px rgba(0,0,0,.5);
   }
 .mmg:hover, .mmg.active {
   overflow: visible;
-  background: #F06F6F;
+  background: #fff;
   }
 .mmg .overlay {
   color: white;
@@ -277,11 +277,11 @@ form.geocode.loading input[type=submit] {
   padding: 10px;
   border-radius: 3px;
   position: absolute;
-  bottom: 60px;
-  left: -75px;
+  bottom: 50px;
+  left: -80px;
   visibility: hidden;
   opacity: 0;
-  background: #80ba8c;
+  background: #AED574;
   z-index: 2;
   cursor: auto;
   }
@@ -345,7 +345,7 @@ form.geocode.loading input[type=submit] {
   pointer-events: none;
   }
 .mmg .overlay:after {
-  border-top-color: #80ba8c;
+  border-top-color: #AED574;
   border-width: 10px;
   left: 50%;
   margin-left: -10px;
@@ -537,7 +537,7 @@ form.geocode.loading input[type=submit] {
 /* #Content */
 #content a {
   font-weight: 700;
-  color: #69BC8A;
+  color: #AED574;
   }
 #content a:hover,
 #content .active a {
@@ -564,7 +564,7 @@ h3 {
 
 }
 .venue.active {
-  background: #80ba8c;
+  background: #AED574;
   }
 #content .location {
   position: relative;
@@ -601,7 +601,7 @@ a#showall {
   padding: 20px;
   }
 #no-venues strong {
-  color: #80ba8c;
+  color: #AED574;
   font-weight: bold;
   }
 #fsq-attribution {
