@@ -90,13 +90,13 @@ body > div {
   }
 
 #header {
+  background:rgba(0,0,0, 0.9);
   position: absolute;
   top: 0; left: 0;
   height: 20px;
   padding: 20px;
   width:330px;
-  color: #333;
-  background:white;
+  color: white;
 }
 
 #content {
@@ -260,13 +260,13 @@ form.geocode.loading input[type=submit] {
   z-index: 3;
   cursor: pointer;
   overflow: hidden;
-  background: white;
+  background: #76bb8b;
   border-radius: 50%;
   box-shadow: 0 0 0 10px rgba(0,0,0,.10);
   }
 .mmg:hover, .mmg.active {
   overflow: visible;
-  background: #76bb8b;
+  background: #F06F6F;
   }
 .mmg .overlay {
   color: white;
@@ -609,3 +609,18 @@ a#showall {
   bottom: 5px;
   height: 15px;
   }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,.5);
+    background: black;
+}
