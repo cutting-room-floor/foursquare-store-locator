@@ -6,10 +6,13 @@
     <link rel="stylesheet" href="map.css" type="text/css" />
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link rel="shortcut icon" href="http://mapbox.com/images/favicon.ico" type="image/x-icon" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body class="left">
-    <div id="content"><div class="limiter">
+    <div id='header'>
         <h1>Store Locator</h1>
+    </div>
+    <div id="content"><div class="limiter">
         <a id="showall" class="hidden" href="#">Address filter</a>
         <div id="no-venues" class="hidden">Oops! Looks like there are no <strong>sweetgreen</strong> locations within five miles of this address. Try another search.</div>
     </div></div>
@@ -36,10 +39,10 @@
     <script src="ext/mmg.js"></script>
     <script src="script.js"></script>
     <script src="foursquare.js"></script>
-    
+
     <!-- Site configuration -->
     <script type="text/javascript">
-        
+
         // Set up the foursquare API
         foursquare.settings = {
             /* foursquare API keys. See: https://foursquare.com/oauth/register */
@@ -53,11 +56,11 @@
 
         // Make a new map in #map
         var main = Map('map', {
-            api: 'http://a.tiles.mapbox.com/v3/dhcole.map-qkbbib4q.jsonp',
+            api: 'http://a.tiles.mapbox.com/v3/examples.map-3gisupiu.jsonp',
             center: {
-                lat: 38.897562770340755,
-                lon: -77.06610914869823,
-                zoom: 13
+                lat: 38.8975,
+                lon: -77.0661,
+                zoom: 15
             },
             zoomRange: [1, 17],
             features: [

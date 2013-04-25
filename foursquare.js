@@ -7,7 +7,7 @@ foursquare.venues = [];
 
 
 // Get venues
-foursquare.start = function() {    
+foursquare.start = function() {
     // Default ajax params
     foursquare.params = {
         client_id: foursquare.settings.client_id,
