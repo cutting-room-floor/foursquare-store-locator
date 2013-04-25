@@ -95,7 +95,8 @@ body > div {
   height: 25px;
   padding: 20px;
   width:330px;
-  background:#69BC8A;
+  color: #333;
+  background:white;
 }
 
 #content {
@@ -259,7 +260,7 @@ form.geocode.loading input[type=submit] {
   z-index: 3;
   cursor: pointer;
   overflow: hidden;
-  background: #964375;
+  background: white;
   border-radius: 50%;
   box-shadow: 0 0 0 10px rgba(0,0,0,.10);
   }
@@ -291,11 +292,12 @@ form.geocode.loading input[type=submit] {
   }
 .mmg .location .name {
   font-weight: 700;
+  color: #333;
   font-size: 18px;
   height: 40px;
   margin: -10px -10px 10px -10px;
   padding: 0 10px;
-  background: #a53875;
+  background: white;
   display: block;
   width: 160px;
   border-radius: 4px 4px 0 0;
@@ -308,12 +310,12 @@ form.geocode.loading input[type=submit] {
 .mmg .foursquare > div:first-child {
   margin: -10px -10px 0px -10px;
   padding: 10px;
-  background: #a53875;
+  background: white;
   width: 160px !important;
   border-radius: 4px 4px 0 0;
   }
 .mmg .foursquare .checkins {
-  border-right: 1px solid #ad3075;
+  border-right: 1px solid white;
   margin-right: 20px;
   padding-right: 32px;
 }
