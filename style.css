@@ -212,6 +212,7 @@ form.geocode.loading input[type=submit] {
   color: #333;
   padding-left: 75px;
   padding-top: 2px;
+  opacity: .5;
   }
 .wax-attribution a {
   color: #333;
