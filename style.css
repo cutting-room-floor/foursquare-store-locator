@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 h1 {
   line-height:1em;
-  font-size:1.75em;
+  font-size:1.5em;
   }
 h2 {
   line-height:1.5em;
@@ -92,7 +92,7 @@ body > div {
 #header {
   position: absolute;
   top: 0; left: 0;
-  height: 25px;
+  height: 20px;
   padding: 20px;
   width:330px;
   color: #333;
@@ -101,7 +101,7 @@ body > div {
 
 #content {
   position:absolute;
-  top:65px;
+  top:60px;
   right:0;
   bottom:0;
   width:330px;
@@ -280,15 +280,9 @@ form.geocode.loading input[type=submit] {
   left: -75px;
   visibility: hidden;
   opacity: 0;
-  background: #69bc8a;
+  background: #80ba8c;
   z-index: 2;
   cursor: auto;
-  }
-.mmg.active .overlay {
-  background: #80ba8c;
-  }
-.mmg.active .overlay:after {
-  border-top-color: #80ba8c;
   }
 .mmg .location .name {
   font-weight: 700;
