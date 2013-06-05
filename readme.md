@@ -43,7 +43,7 @@ CSS rules are set in two files:
 
 ## Javascript interaction
 
-All of the external javascript libraries to make the map interactive and connect it to MapBox are stored in the `ext` directory. For this template, we're using [Modest Maps](http://modestmaps.com/) and [Wax](http://mapbox.com/wax) to make the map interactive, [Easey](https://github.com/mapbox/easey) for smooth aninmated panning and zooming, and [MMG](http://mapbox.com/mmg/) for adding markers to the map based on [geojson](http://www.geojson.org/)-formatted data.
+All of the external javascript libraries to make the map interactive and connect it to MapBox are stored in the `ext` directory. For this template, we're using [Modest Maps](http://modestmaps.com/) and [Wax](http://mapbox.com/wax) to make the map interactive, [Easey](https://github.com/mapbox/easey) for smooth aninmated panning and zooming, and [markers.js](http://mapbox.com/markers.js/) for adding markers to the map based on [geojson](http://www.geojson.org/)-formatted data.
 
 An internal javascript library, `script.js`, abstracts common map settings, and `foursquare.js` is the library we put together map the foursquare API.
 
@@ -138,7 +138,7 @@ The work of fetching, parsing, mapping, and filtering the venues (store location
 
 * [MapBox API](http://mapbox.com/hosting/api/)
 * [MapBox Wax](http://mapbox.com/wax/)
-* [MapBox MMG](http://mapbox.com/mmg/)
+* [MapBox Markers.js](http://mapbox.com/markers.js/)
 * [MapBox Easey](http://mapbox.com/easey/)
 * [Modest Maps](http://modestmaps.com/)
 * [jQuery](http://jquery.com/)
