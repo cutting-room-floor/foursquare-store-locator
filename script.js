@@ -9,9 +9,6 @@
                 easey.DoubleClickHandler(),
                 easey.TouchHandler()
             ];
-            if ($.inArray('zoomwheel', l.features) >= 0) {
-                handlers.push(easey.MouseWheelHandler());
-            }
             if ($.inArray('static', l.features) >= 0) {
                 handlers = null;
             }
