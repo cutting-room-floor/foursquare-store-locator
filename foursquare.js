@@ -104,17 +104,6 @@ foursquare.table = function() {
                 });
         }
     });
-
-    // Foursquare button
-    (function() {
-        window.___fourSq = {"uid":"19778482"};
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.src = 'http://platform.foursquare.com/js/widgets.js';
-        s.async = true;
-        var ph = document.getElementsByTagName('script')[0];
-        ph.parentNode.insertBefore(s, ph);
-    })();
 };
 
 
@@ -164,7 +153,6 @@ foursquare.map = function() {
                     '</span>' +
                 '</div>' +
                 '<div class="foursquare">' +
-                    '<a href="https://foursquare.com/intent/venue.html" class="fourSq-widget" data-variant="wide" data-context="'+ x.id +'">Save to foursquare</a>' +
                     '<div class="checkins">' +
                         '<span class="number"><%= stats.checkinsCount %></span>' +
                         '<span class="label">checkins</span>' +
