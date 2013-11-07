@@ -1,3 +1,7 @@
+**deprecated: We highly recommend you start new projects from the [MapBox.js examples](https://www.mapbox.com/mapbox.js/example/v1.0.0/),
+rather than this project - the Foursquare Store Locator is based on an older version of MapBox.js which lacks new
+functionality.**
+
 # Foursquare Store Locator
 
 This template uses the foursquare API to build a store locator feature that maps all addresses for venues in a foursquare list and allows users to search for closest venues. 
