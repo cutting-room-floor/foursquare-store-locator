@@ -12,7 +12,7 @@ foursquare.start = function() {
     foursquare.params = {
         client_id: foursquare.settings.client_id,
         client_secret: foursquare.settings.client_secret,
-        v: '20120530',
+        v: '20140707',
         callback: 'callback'
     };
     foursquare.geocoder();
@@ -262,7 +262,7 @@ foursquare.geocoder = function() {
         $('form.geocode').addClass('loading');
         reqwest({
             url: 'https://api.foursquare.com/v2/venues/search'+
-                params + '&limit=1&intent=match&near=' + query,
+                params + '&limit=1&intent=browse&near=' + query,
             type: 'jsonp',
             jsonpCallback: 'callback',
             success: function (r) {
