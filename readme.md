@@ -87,7 +87,7 @@ The features object may contain any of the following:
 - `zoompan` Show zoom controls on the map
 - `legend` Show a legend on the map. Legends from multiple layers will stack on top of each other
 - `share` Show a share button on the map with Twitter, Facebook links and an embed code for the map. The embedded view of the map will add a `class="embed"` to the `<body>` element of the page for easy theming. For instance, by default the embed layout is a full screen map with the layer switcher over it on the left. The header and content are hidden.
-- `bwdetect` Automatically detect low bandwidth contections and decrease the quality of the map images to accomodate
+- `bwdetect` Automatically detect low bandwidth contections and decrease the quality of the map images to accommodate
 
 A map with all the options and a callback function would look like this:
 
